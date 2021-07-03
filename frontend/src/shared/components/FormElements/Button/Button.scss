@@ -1,0 +1,62 @@
+@import "../../../../scss/variables";
+
+.button {
+  font: inherit;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid $darkBlue;
+  border-radius: 5px;
+  background: $darkBlue;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: lighten($darkBlue, 10%);
+  border-color: lighten($darkBlue, 10%);
+}
+
+.button--inverse {
+  background: transparent;
+  color: $darkBlue;
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+  color: white;
+  background: $darkBlue;
+}
+
+.button--danger {
+  background: $warning;
+  border-color: $warning;
+}
+
+.button--danger:hover,
+.button--danger:active {
+  background: lighten($warning, 10%);
+  border-color: lighten($warning, 10%);
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button--small {
+  font-size: 0.8rem;
+}
+
+.button--big {
+  font-size: 1.5rem;
+}

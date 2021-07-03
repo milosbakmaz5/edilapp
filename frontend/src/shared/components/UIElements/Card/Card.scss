@@ -1,0 +1,11 @@
+@import "../../../../scss/variables";
+
+.card {
+  position: relative;
+  margin: 0;
+  box-shadow: $shadow;
+  border-radius: 6px;
+  padding: 2rem;
+  overflow: hidden;
+  background: white;
+}

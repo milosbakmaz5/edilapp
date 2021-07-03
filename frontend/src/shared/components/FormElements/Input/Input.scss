@@ -1,0 +1,50 @@
+@import "../../../../scss/variables";
+
+.form-control {
+  margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+}
+
+.form-control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-left: 6px;
+}
+
+.form-control input,
+.form-control textarea {
+  width: 100%;
+  font: inherit;
+  border: 1px solid rgb(224, 224, 224);
+  background: rgb(248, 248, 248);
+  padding: 0.15rem 0.25rem;
+  border-radius: 5px;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline: none;
+  background: $cultured;
+  border: 2px solid $blue;
+}
+
+.form-control--invalid label,
+.form-control--invalid p {
+  color: $warning;
+}
+
+.form-control--invalid p {
+  font-size: 14px;
+  margin: 8px 6px;
+}
+
+.form-control--invalid input,
+.form-control--invalid textarea {
+  border-color: $warning;
+  background: $secondaryWarning;
+}
