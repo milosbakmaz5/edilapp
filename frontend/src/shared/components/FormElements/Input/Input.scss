@@ -13,16 +13,16 @@
 .form-control label {
   font-weight: bold;
   margin-bottom: 0.5rem;
-  margin-left: 6px;
+  margin-left: 0.4rem;
 }
 
 .form-control input,
 .form-control textarea {
   width: 100%;
   font: inherit;
-  border: 1px solid rgb(224, 224, 224);
+  border: 2px solid rgb(224, 224, 224);
   background: rgb(248, 248, 248);
-  padding: 0.15rem 0.25rem;
+  padding: 0.55rem 0.4rem 0.45rem 0.4rem;
   border-radius: 5px;
 }
 

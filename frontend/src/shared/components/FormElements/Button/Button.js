@@ -33,7 +33,9 @@ const Button = (props) => {
     <button
       className={`button button--${props.size || "default"} ${
         props.inverse && "button--inverse"
-      } ${props.danger && "button--danger"}`}
+      } ${props.danger && "button--danger"} ${props.wide && "button--wide"} ${
+        props.transparent && "button--transparent"
+      }`}
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
