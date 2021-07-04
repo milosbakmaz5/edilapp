@@ -31,7 +31,8 @@ const Auth = () => {
     },
     false
   );
-  const authSubmitHandler = async () => {
+  const authSubmitHandler = async (event) => {
+    event.preventDefault();
     if (isLogInMode) {
       try {
         const responseData = await sendRequest(
@@ -45,9 +46,11 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-
-        auth.login(responseData.userId, responseData.token);
-      } catch {}
+        console.log(responseData);
+        //auth.login(responseData.userId, responseData.token);
+      } catch {
+        console.log("error");
+      }
     } else {
       try {
         const responseData = await sendRequest(
@@ -56,15 +59,15 @@ const Auth = () => {
           JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
-            fistname: formState.inputs.fistname.value,
+            firstname: formState.inputs.firstname.value,
             lastname: formState.inputs.lastname.value,
           }),
           {
             "Content-Type": "application/json",
           }
         );
-
-        auth.login(responseData.userId, responseData.token);
+        console.log(responseData);
+        //auth.login(responseData.userId, responseData.token);
       } catch {}
     }
   };
@@ -151,6 +154,7 @@ const Auth = () => {
         </Button>
       </form>
       <Button onClick={switchModeHandler} size="small" transparent wide>
+        {/* https://emojipedia.org/direct-hit/ */}
         {isLogInMode && "Create account here 🎯"}
         {!isLogInMode && "Already have an account? Click here 🎯"}
       </Button>
