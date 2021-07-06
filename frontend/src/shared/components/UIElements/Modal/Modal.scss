@@ -1,0 +1,76 @@
+@import "../../../../scss/variables";
+@import "../../../../scss//mixins";
+
+.modal {
+  z-index: 100;
+  position: fixed;
+  top: 20vh;
+  left: calc(50% - 15rem);
+  width: 30rem;
+  background: white;
+  box-shadow: $shadow;
+  border-radius: 10px;
+}
+
+.modal__header {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  background: white;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+}
+
+.modal__header h2 {
+  margin: 0.5rem;
+  font-family: $roboto;
+}
+
+.modal__header_error {
+  background: $warning;
+}
+
+.modal__content {
+  padding: 1rem 2rem;
+}
+
+.modal__footer {
+  padding: 1rem 2rem;
+}
+
+@include customMaxBreakPoint(1024) {
+  .modal {
+    left: 2rem;
+    width: calc(100% - 4rem);
+  }
+}
+
+// @media (min-width: 768px) {
+//   .modal {
+//     left: calc(50% - 20rem);
+//     width: 40rem;
+//   }
+// }
+
+.modal-enter {
+  transform: translateY(-10rem);
+  opacity: 0;
+}
+
+.modal-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.modal-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-exit-active {
+  transform: translateY(-10rem);
+  opacity: 0;
+  transition: all 200ms;
+}

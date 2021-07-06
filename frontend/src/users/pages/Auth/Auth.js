@@ -8,11 +8,13 @@ import Card from "../../../shared/components/UIElements/Card/Card";
 import Input from "../../../shared/components/FormElements/Input/Input";
 import Button from "../../../shared/components/FormElements/Button/Button";
 import {
+  VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../../shared/util/validators";
 
 import "./Auth.scss";
+import ErrorModal from "../../../shared/components/UIElements/ErrorModal/ErrorModal";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
@@ -48,9 +50,7 @@ const Auth = () => {
         );
         console.log(responseData);
         //auth.login(responseData.userId, responseData.token);
-      } catch {
-        console.log("error");
-      }
+      } catch {}
     } else {
       try {
         const responseData = await sendRequest(
@@ -102,6 +102,7 @@ const Auth = () => {
 
   return (
     <Card className="auth__card">
+      <ErrorModal onClear={clearError} error={error} />
       <p className="auth__card_header">🐖welcome</p>
       <h1 className="auth__card_main_header">
         {isLogInMode && "SIGN IN"}
@@ -133,11 +134,11 @@ const Auth = () => {
         <Input
           id="email"
           element="input"
-          type="text"
+          type="email"
           onInput={inputHandler}
           label="Email:"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Email is required."
+          validators={[VALIDATOR_EMAIL()]}
+          errorText="Please enter a valid email."
         />
         <Input
           id="password"
