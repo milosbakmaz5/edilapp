@@ -1,0 +1,59 @@
+@import "../../../../scss/variables";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.paginationItem {
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  position: relative;
+  margin: 0 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.paginationItem span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $primaryTextColor;
+}
+
+.prev,
+.next {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  svg {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+}
+
+.paginationItem.active {
+  color: #888;
+  pointer-events: none;
+  background-color: $cultured;
+  font-weight: bold;
+}
+
+.paginationItem.undefined {
+  display: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}

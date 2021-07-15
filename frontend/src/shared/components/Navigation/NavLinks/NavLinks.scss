@@ -1,0 +1,93 @@
+@import "../../../../scss/variables";
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $roboto;
+}
+
+.nav-links li {
+  margin: 1rem;
+}
+
+.nav-links a {
+  border: 1px solid transparent;
+  color: #292929;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.nav-links a:hover,
+.nav-links a:active,
+.nav-links a.active {
+  background: $blue;
+  border-color: $blue;
+  color: $primaryTextColor;
+  font-weight: bold;
+  color: $cultured;
+}
+
+.nav-links button {
+  cursor: pointer;
+  border: 1px solid $primaryTextColor;
+  color: $primaryTextColor;
+  background: transparent;
+  padding: 0.5rem;
+  font: inherit;
+  border-radius: 5px;
+}
+
+.nav-links button:focus {
+  outline: none;
+}
+
+.nav-links button:hover,
+.nav-links button:active {
+  background: lighten($primaryTextColor, 40%);
+  border: 1px solid lighten($primaryTextColor, 40%);
+  color: $cultured;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    flex-direction: row;
+  }
+
+  .nav-links li {
+    margin: 0 0.5rem;
+  }
+
+  .nav-links a {
+    color: $cultured;
+    text-decoration: none;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:active,
+  .nav-links a.active {
+    background: $cultured;
+    border-color: $cultured;
+    color: $primaryTextColor;
+    font-weight: bold;
+  }
+
+  .nav-links button {
+    border: 1px solid $cultured;
+    color: $cultured;
+    background: transparent;
+  }
+
+  .nav-links button:hover,
+  .nav-links button:active {
+    background: $cultured;
+    color: $primaryTextColor;
+  }
+}

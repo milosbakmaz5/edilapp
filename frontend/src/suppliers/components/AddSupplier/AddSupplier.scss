@@ -1,0 +1,17 @@
+@import "../../../scss/mixins";
+
+.add-supplier__header {
+  color: $primaryTextColor;
+  border-bottom: 1px solid $cultured;
+}
+
+.add-supplier__footer {
+  padding: 1rem;
+  .add-supplier__buttons {
+    display: grid;
+    grid-template-columns: calc(50% - 0.5rem) calc(50% - 0.5rem);
+    gap: 1rem;
+    button {
+    }
+  }
+}

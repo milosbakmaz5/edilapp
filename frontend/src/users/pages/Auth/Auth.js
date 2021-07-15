@@ -15,6 +15,7 @@ import {
 
 import "./Auth.scss";
 import ErrorModal from "../../../shared/components/UIElements/ErrorModal/ErrorModal";
+import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
@@ -46,10 +47,10 @@ const Auth = () => {
           }),
           {
             "Content-Type": "application/json",
+            // Authorization: `Bearer ` + "nzm",
           }
         );
-        console.log(responseData);
-        //auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId, responseData.token);
       } catch {}
     } else {
       try {
@@ -66,8 +67,7 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        console.log(responseData);
-        //auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId, responseData.token);
       } catch {}
     }
   };
@@ -103,6 +103,7 @@ const Auth = () => {
   return (
     <Card className="auth__card">
       <ErrorModal onClear={clearError} error={error} />
+      {isLoading && <LoadingSpinner asOverlay />}
       <p className="auth__card_header">🐖welcome</p>
       <h1 className="auth__card_main_header">
         {isLogInMode && "SIGN IN"}
@@ -149,7 +150,7 @@ const Auth = () => {
           validators={[VALIDATOR_MINLENGTH(6)]}
           errorText="Password should be at least 6 characters long."
         />
-        <Button type="submit" wide>
+        <Button type="submit" wide disabled={!formState.isValid}>
           {isLogInMode && "LOG IN"}
           {!isLogInMode && "REGISTER"}
         </Button>

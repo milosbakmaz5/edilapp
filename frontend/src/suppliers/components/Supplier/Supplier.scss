@@ -1,0 +1,11 @@
+@import "../../../scss/mixins";
+
+.supplier__container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-bottom: 1px solid $darkerCultured;
+  .supplier__container_code,
+  .supplier__container_name {
+    padding: 0 0.5rem;
+  }
+}

@@ -9,6 +9,9 @@ import { useAuth } from "./shared/hooks/auth-hook";
 import Auth from "./users/pages/Auth/Auth";
 import Storage from "./storage/pages/Storage";
 import { AuthContext } from "./shared/context/auth-context";
+import MainNavigation from "./shared/components/Navigation/MainNavigation/MainNavigation";
+import AddItem from "./storage/pages/AddItem";
+import Suppliers from "./suppliers/pages/Suppliers";
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -17,8 +20,14 @@ const App = () => {
   if (token) {
     routes = (
       <Switch>
-        <Route path="/storage">
+        <Route path="/storage/new" exact>
+          <AddItem />
+        </Route>
+        <Route path="/storage" exact>
           <Storage />
+        </Route>
+        <Route path="/suppliers" exact>
+          <Suppliers />
         </Route>
         <Redirect to="/storage" />
       </Switch>
@@ -45,6 +54,7 @@ const App = () => {
       }}
     >
       <Router>
+        {token && <MainNavigation />}
         <main>{routes}</main>
       </Router>
     </AuthContext.Provider>
