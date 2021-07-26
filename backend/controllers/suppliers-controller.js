@@ -40,6 +40,7 @@ const createSupplier = async (req, res, next) => {
   const createdSupplier = new Supplier({
     code,
     name,
+    items: [],
   });
 
   try {

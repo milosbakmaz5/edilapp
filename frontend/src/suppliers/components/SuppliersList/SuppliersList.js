@@ -14,9 +14,18 @@ const SuppliersList = (props) => {
     );
   }
 
+  const selectSupplierHandler = (supplierId) => {
+    props.selectSupplier(supplierId);
+  };
+
   return (
     <React.Fragment>
-      <div className="suppliers-list__header">
+      <div
+        className={`suppliers-list__header ${
+          props.pick ? "suppliers-list__header__pick" : ""
+        }`}
+      >
+        {props.pick && <p></p>}
         <p>CODE</p>
         <p>NAME</p>
       </div>
@@ -26,6 +35,8 @@ const SuppliersList = (props) => {
           RenderComponent={Supplier}
           pageLimit={3}
           dataLimit={10}
+          pick={props.pick}
+          onSelectSupplier={selectSupplierHandler}
         />
       </div>
     </React.Fragment>

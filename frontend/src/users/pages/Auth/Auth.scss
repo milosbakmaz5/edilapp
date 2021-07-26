@@ -25,6 +25,14 @@
   }
 }
 
+.auth__card_modal_headerClass {
+  background-color: $darkBlue !important;
+}
+
+.auth__card_modal_contentClass {
+  text-align: center;
+}
+
 @include customMaxBreakPoint(1024) {
   .auth__card {
     width: calc(100% - 4rem);

@@ -11,21 +11,21 @@ const NavLinks = () => {
     <ul className="nav-links">
       {auth.isLoggedIn && (
         <li>
-          <NavLink exact to="/suppliers">
+          <NavLink to="/suppliers" exact>
             SUPPLIERS
           </NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink exact to="/storage">
+          <NavLink to="/storage" exact>
             STORAGE
           </NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink exact to="/storage/new">
+          <NavLink to="/storage/new" exact>
             ADD ITEM
           </NavLink>
         </li>

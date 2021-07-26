@@ -13,7 +13,7 @@ import { AuthContext } from "../../../shared/context/auth-context";
 const AddSupplier = (props) => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [formState, inputHandler, setFormData] = useForm(
+  const [formState, inputHandler] = useForm(
     {
       code: {
         value: "",
@@ -30,8 +30,8 @@ const AddSupplier = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      const responseData = await sendRequest(
-        "http://localhost:5000/api/suppliers",
+      await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/suppliers`,
         "POST",
         JSON.stringify({
           code: formState.inputs.code.value,
@@ -58,7 +58,7 @@ const AddSupplier = (props) => {
         footerClass="add-supplier__footer"
         footer={
           <div className="add-supplier__buttons">
-            <Button inverse onClick={props.onCancel}>
+            <Button type="button" inverse onClick={props.onCancel}>
               CANCEL
             </Button>
             <Button type="submit" disabled={!formState.isValid}>

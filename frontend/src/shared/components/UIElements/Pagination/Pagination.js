@@ -3,10 +3,17 @@ import React, { useState, useEffect } from "react";
 import "./Pagination.scss";
 import { VscChevronRight, VscChevronLeft } from "react-icons/vsc";
 
-const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
-  const [pages] = useState(Math.round(data.length / dataLimit));
+const Pagination = ({
+  data,
+  RenderComponent,
+  pageLimit,
+  dataLimit,
+  pick,
+  onSelectSupplier,
+  deleteItemHandler,
+}) => {
+  const [pages] = useState(Math.floor(data.length / dataLimit) + 1);
   const [currentPage, setCurrentPage] = useState(1);
-
   useEffect(() => {
     window.scrollTo({ behavior: "smooth", top: "0px" });
   }, [currentPage]);
@@ -37,16 +44,28 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
       .map((_, idx) => (start + idx + 1 > pages ? undefined : start + idx + 1));
   };
 
+  const selectSupplierHandler = (supplierId) => {
+    onSelectSupplier(supplierId);
+  };
+
   return (
     <div>
       <div>
         {getPaginatedData().map((d, idx) => (
-          <RenderComponent key={idx} data={d} />
+          <RenderComponent
+            key={idx}
+            data={d}
+            pick={pick}
+            picked={d.isSelected}
+            onSelect={selectSupplierHandler}
+            onDelete={deleteItemHandler}
+          />
         ))}
       </div>
 
       <div className="pagination">
         <button
+          type="button"
           onClick={goToPreviousPage}
           className={`prev ${currentPage === 1 ? "disabled" : ""}`}
         >
@@ -55,6 +74,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
 
         {getPaginationGroup().map((item, index) => (
           <button
+            type="button"
             key={index}
             onClick={changePage}
             className={`paginationItem ${
@@ -66,6 +86,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
         ))}
 
         <button
+          type="button"
           onClick={goToNextPage}
           className={`next ${currentPage === pages ? "disabled" : ""}`}
         >

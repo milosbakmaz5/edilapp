@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
+import jwt_decode from "jwt-decode";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import { useForm } from "../../../shared/hooks/form-hook";
-import { useAuth } from "../../../shared/hooks/auth-hook";
 import { AuthContext } from "../../../shared/context/auth-context";
 
 import Card from "../../../shared/components/UIElements/Card/Card";
@@ -15,11 +15,15 @@ import {
 
 import "./Auth.scss";
 import ErrorModal from "../../../shared/components/UIElements/ErrorModal/ErrorModal";
+import Modal from "../../../shared/components/UIElements/Modal/Modal";
 import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner/LoadingSpinner";
+import { Redirect, useParams } from "react-router";
 
 const Auth = () => {
+  const hashedValue = useParams().value;
   const auth = useContext(AuthContext);
   const [isLogInMode, setIsLogInMode] = useState(true);
+  const [showCofirmEmailMessage, setShowConfirmEmailMessage] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -34,28 +38,36 @@ const Auth = () => {
     },
     false
   );
+  if (hashedValue && hashedValue.length !== 64) {
+    return <Redirect to="/" exact />;
+  }
   const authSubmitHandler = async (event) => {
     event.preventDefault();
     if (isLogInMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          `${process.env.REACT_APP_BACKEND_URL}/users/login`,
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
+            hashedValue: hashedValue,
           }),
           {
             "Content-Type": "application/json",
             // Authorization: `Bearer ` + "nzm",
           }
         );
-        auth.login(responseData.userId, responseData.token);
+        if (!jwt_decode(responseData.token).activated) {
+          setShowConfirmEmailMessage(true);
+        } else {
+          auth.login(responseData.userId, responseData.token);
+        }
       } catch {}
     } else {
       try {
-        const responseData = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+        await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -67,7 +79,7 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        auth.login(responseData.userId, responseData.token);
+        setShowConfirmEmailMessage(true);
       } catch {}
     }
   };
@@ -100,8 +112,29 @@ const Auth = () => {
     setIsLogInMode((prevState) => !prevState);
   };
 
+  const closeConfirmEmailHandler = () => {
+    setShowConfirmEmailMessage(false);
+  };
+
   return (
     <Card className="auth__card">
+      <Modal
+        onCancel={closeConfirmEmailHandler}
+        header="Confirm email"
+        show={showCofirmEmailMessage}
+        headerClass="auth__card_modal_headerClass"
+        contentClass="auth__card_modal_contentClass"
+        footer={
+          <Button right inverse onClick={closeConfirmEmailHandler}>
+            OK
+          </Button>
+        }
+      >
+        <h3>Successfull registration. 🙌</h3>
+        Please, confirm your email.
+        <br />
+        We have sent you a verification link.
+      </Modal>
       <ErrorModal onClear={clearError} error={error} />
       {isLoading && <LoadingSpinner asOverlay />}
       <p className="auth__card_header">🐖welcome</p>

@@ -11,6 +11,9 @@
   .suppliers__add {
     margin-top: 2rem;
   }
+  p {
+    word-wrap: break-word;
+  }
 }
 
 @include smMinBreakPoint {
@@ -23,26 +26,42 @@
 @include mdMinBreakPoint {
   .suppliers__container {
     width: 60%;
-    margin: 0 auto;
+    margin: 2rem auto;
     .suppliers__search {
-      max-width: 60%;
+      max-width: 80%;
       margin: 0 auto;
       input {
         width: 400px;
-        max-width: 60%;
+        max-width: 80%;
         margin: 0 auto;
       }
       label {
         width: 400px;
-        max-width: 60%;
+        max-width: 80%;
         margin-left: auto;
         margin-right: auto;
       }
     }
     .suppliers__add {
       width: 400px;
-      max-width: 60%;
+      max-width: 80%;
       margin: 2rem auto 0 auto;
+    }
+  }
+}
+
+@include xxlMinBreakPoint {
+  .suppliers__container {
+    .suppliers__search,
+    .suppliers__add {
+      max-width: 80%;
+    }
+
+    .suppliers__search {
+      input,
+      label {
+        max-width: 80%;
+      }
     }
   }
 }

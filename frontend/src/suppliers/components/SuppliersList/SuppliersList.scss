@@ -10,13 +10,28 @@
   border-radius: 5px;
 }
 
+.suppliers-list__header__pick {
+  grid-template-columns: 60px calc(50% - 30px) calc(50% - 30px);
+}
+
 @include mdMinBreakPoint {
   .suppliers-list__header {
-    width: 60%;
+    width: 80%;
     margin: 0.5rem auto;
   }
   .suppliers-list__container {
-    width: 60%;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@include xxlMinBreakPoint {
+  .suppliers-list__header {
+    width: 80%;
+    margin: 0.5rem auto;
+  }
+  .suppliers-list__container {
+    width: 80%;
     margin: 0 auto;
   }
 }

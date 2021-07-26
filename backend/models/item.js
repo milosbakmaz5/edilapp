@@ -7,9 +7,8 @@ const itemSchema = new Schema({
   productionName: { type: String, required: true },
   financeName: { type: String, required: true },
   measure: { type: String, required: true },
-  weight: { type: String, required: true },
-  supplierCode: { type: String, required: true },
-  supplier: { type: String, required: true },
+  weight: { type: Number, required: true },
+  suppliers: [{ type: mongoose.Types.ObjectId, ref: "Supplier" }],
   image: { type: String, required: true },
   price: { type: Number, required: true },
 });

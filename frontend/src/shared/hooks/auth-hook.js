@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 
 let logoutTimer;
 
@@ -8,6 +9,10 @@ export const useAuth = () => {
   const [userId, setUserId] = useState();
 
   const login = useCallback((uid, token, expirationDate) => {
+    const activated = jwt_decode(token).activated;
+    if (!activated) {
+      return;
+    }
     setToken(token);
     setUserId(uid);
     const tokenExpirationDate =

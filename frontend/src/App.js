@@ -12,6 +12,8 @@ import { AuthContext } from "./shared/context/auth-context";
 import MainNavigation from "./shared/components/Navigation/MainNavigation/MainNavigation";
 import AddItem from "./storage/pages/AddItem";
 import Suppliers from "./suppliers/pages/Suppliers";
+import UpdateItem from "./storage/pages/UpdateItem";
+import { Suspense } from "react";
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -20,22 +22,28 @@ const App = () => {
   if (token) {
     routes = (
       <Switch>
-        <Route path="/storage/new" exact>
-          <AddItem />
-        </Route>
-        <Route path="/storage" exact>
-          <Storage />
-        </Route>
-        <Route path="/suppliers" exact>
+        <Route exact path="/suppliers">
           <Suppliers />
         </Route>
-        <Redirect to="/storage" />
+        <Route exact path="/storage/new">
+          <AddItem />
+        </Route>
+        <Route exact path="/storage/:id">
+          <UpdateItem />
+        </Route>
+        <Route exact path="/storage">
+          <Storage />
+        </Route>
+        <Redirect to="/suppliers" />
       </Switch>
     );
   } else {
     routes = (
       <Switch>
-        <Route path="/">
+        <Route path="/" exact>
+          <Auth />
+        </Route>
+        <Route path="/:value" exact>
           <Auth />
         </Route>
         <Redirect to="/" />
@@ -55,7 +63,9 @@ const App = () => {
     >
       <Router>
         {token && <MainNavigation />}
-        <main>{routes}</main>
+        <main>
+          <Suspense>{routes}</Suspense>
+        </main>
       </Router>
     </AuthContext.Provider>
   );

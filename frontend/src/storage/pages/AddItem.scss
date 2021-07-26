@@ -1,0 +1,60 @@
+@import "../../scss/mixins";
+
+.add-item__container {
+  margin: 2rem;
+  padding: 1rem;
+
+  h2 {
+    margin-left: 7px;
+    margin-bottom: 35px;
+  }
+  .add-item__add {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .add-item__selected-suppliers {
+    margin-top: 2rem;
+  }
+}
+
+.add-item__container_none {
+  display: none;
+}
+
+@include smMinBreakPoint {
+  .add-item__container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@include mdMinBreakPoint {
+  .add-item__container {
+    width: 60%;
+    margin: 2rem auto;
+  }
+
+  .add-item__add {
+    width: 400px;
+    max-width: 60%;
+    margin: 2rem auto 2rem auto;
+  }
+}
+
+@include lgMinBreakPoint {
+  .add-item__container {
+    width: 60%;
+    margin: 2rem auto;
+    position: relative;
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      width: 400px;
+      margin: 0 auto;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "env": {
+    "DB_USER":"admin",
+    "DB_PASSWORD":"Kj1jicLxxj5GGoHV",
+    "DB_NAME":"edil",
+    "FRONTEND_MAIL_CONFIRMATION":"https://edil-doo.herokuapp.com",
+    "JWT_KEY":"milos0112997800055",
+    "AWS_BUCKET_NAME":"edil-doo",
+    "AWS_BUCKET_REGION":"eu-central-1",
+    "AWS_ACCESS_KEY":"AKIAY7I5TGZRGYH7M55V",
+    "AWS_SECRET_KEY":"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"
+  }
+}

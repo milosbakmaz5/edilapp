@@ -9,3 +9,46 @@
     padding: 0 0.5rem;
   }
 }
+
+.supplier__pick {
+  grid-template-columns: 60px calc(50% - 30px) calc(50% - 30px);
+}
+
+.supplier__picked {
+  background-color: $lightGreen;
+  box-shadow: $smallestShadow;
+}
+
+.supplier__pick_button {
+  height: 26px;
+  width: 26px;
+  margin: auto;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  border-radius: 5px;
+  background-color: $cultured;
+  border: 1px solid $darkerCultured;
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    height: 1rem;
+    width: 1rem;
+
+    svg {
+      height: 1rem;
+      width: 1rem;
+      fill: white;
+    }
+  }
+}
+
+.supplier__picked_button {
+  background-color: $green;
+  border: none;
+}

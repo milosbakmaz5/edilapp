@@ -23,7 +23,9 @@ const Button = (props) => {
         exact={props.exact}
         className={`button button--${props.size || "default"} ${
           props.inverse && "button--inverse"
-        } ${props.danger && "button--danger"}`}
+        } ${props.danger && "button--danger"} ${
+          props.transparent && "button--transparent"
+        }`}
       >
         {props.children}
       </Link>
